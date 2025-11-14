@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Editor from '@monaco-editor/react'
 import './App.css'
 
@@ -8,6 +8,19 @@ function App() {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
+  // Add keyboard shortcut for Ctrl+Enter
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+        e.preventDefault()
+        runCode()
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [code]) // Re-attach listener when code changes
+
   const runCode = async () => {
     setLoading(true)
     setOutput('')
@@ -15,7 +28,6 @@ function App() {
 
     try {
       const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000'
-      console.log('Backend URL:', backendUrl)
       const response = await fetch(`${backendUrl}/playground/execute`, {
         method: 'POST',
         headers: {
