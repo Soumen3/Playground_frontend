@@ -14,7 +14,8 @@ function App() {
     setError('')
 
     try {
-      const response = await fetch('http://localhost:8000/playground/execute', {
+      const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000'
+      const response = await fetch(`${backendUrl}/playground/execute`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
