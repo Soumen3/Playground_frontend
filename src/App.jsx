@@ -15,6 +15,7 @@ function App() {
 
     try {
       const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000'
+      console.log('Backend URL:', backendUrl)
       const response = await fetch(`${backendUrl}/playground/execute`, {
         method: 'POST',
         headers: {
