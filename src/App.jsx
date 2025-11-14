@@ -58,20 +58,20 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white p-6">
+    <div className="min-h-screen bg-gray-900 text-white p-4 sm:p-6">
       <div className="max-w-[1600px] mx-auto">
         {/* Header */}
-        <header className="flex justify-between items-center mb-6">
-          <h1 className="text-3xl font-bold flex items-center gap-3">
-            <span className="text-4xl">🐍</span>
+        <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+          <h1 className="text-2xl sm:text-3xl font-bold flex items-center gap-2 sm:gap-3">
+            <span className="text-3xl sm:text-4xl">🐍</span>
             <span className="bg-linear-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
               Python Playground
             </span>
           </h1>
-          <div className="flex gap-3">
+          <div className="flex gap-2 sm:gap-3 w-full sm:w-auto">
             <button
               onClick={clearCode}
-              className="px-5 py-2.5 bg-gray-700 hover:bg-gray-600 rounded-lg text-sm font-medium flex items-center gap-2 transition-all"
+              className="flex-1 sm:flex-none px-4 sm:px-5 py-2.5 bg-gray-700 hover:bg-gray-600 rounded-lg text-sm font-medium flex items-center justify-center gap-2 transition-all"
               style={{ boxShadow: '0 4px 6px rgba(0, 0, 0, 0.3)' }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.boxShadow = '0 10px 15px rgba(0, 0, 0, 0.4)';
@@ -85,12 +85,12 @@ function App() {
               onMouseUp={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
             >
               <span>🗑️</span>
-              <span>Clear</span>
+              <span className="hidden sm:inline">Clear</span>
             </button>
             <button
               onClick={runCode}
               disabled={loading}
-              className="px-6 py-2.5 bg-green-600 hover:bg-green-700 disabled:bg-gray-600 disabled:cursor-not-allowed rounded-lg font-semibold text-sm flex items-center gap-2 transition-all"
+              className="flex-1 sm:flex-none px-5 sm:px-6 py-2.5 bg-green-600 hover:bg-green-700 disabled:bg-gray-600 disabled:cursor-not-allowed rounded-lg font-semibold text-sm flex items-center justify-center gap-2 transition-all"
               style={{ boxShadow: loading ? 'none' : '0 4px 6px rgba(34, 197, 94, 0.3)' }}
               onMouseEnter={(e) => {
                 if (!loading) {
